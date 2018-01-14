@@ -26,8 +26,56 @@
         console.log(1*2);   //2 乘法运算符
         console.log(10/2);  //5 除法运算符
         console.log(10%3);  //1 求余运算符
-        console.log(++1);   //
+        //累加累减运算符其实分两步完成的。运算，赋值这两步；
+        //该运算符分“先运算后赋值(n++)”和“先赋值后运算(++n)”这两种情况;
+        var n=1;
+        var a=n++;  //先赋值后运算
+        console.log(a); //1;先将n=1复制给变量a
+        console.log(n); //2;赋值完成后n就自我递增+1
+        var m=1;
+        var b=++m;  //先运算再复制
+        cosole.log(b);  //2;这步等变量m运算完成再赋值给变量b
+        console.log(n); //2;
     ```
     2. 赋值运算符：该运算符也主要针对Number类型的数据，分别是=,+=,-=,%=,/=,*=;
-    3. 比较运算符：
-    4. 逻辑运算符：
+    ```javascript
+        var a=1;
+        var a=a+4;
+        console.log(a); //5
+        //等同于以上
+        var a=1;
+        var a+=4;
+        console.log(a); //5  
+    ```
+    从以上代码可知，赋值运算符其实是a=a+4的简写，其他运算符也是如此
+    3. 比较运算符：比较运算符当然比较条件是否符合，符合返回true，不符合返回false
+    ```javascript
+        var a=8;
+        console.log(a == 8);    //等于比较;返回false
+        //全等于比较;返回false,全等于包括值和类型;
+        //a=="8"返回true;“==”运算符只是比较值是否等于;
+        console.log(a === "8");
+        console.log(a != 4);    //不等于比较;返回true
+        console.log(a>6);   //大于比较;返回true
+        console.log(a<6);   //小于比较;返回false
+        console.log(a<=8);  //小于等于比较;返回true
+        console.log(a>=8);  //大于等于比较;返回false        
+    ```
+    4. 逻辑运算符：逻辑判断主要有逻辑或(||)，逻辑与(&&)，逻辑非(!);
+    ```javascript
+        var bool1=true;
+        var bool2=false;
+        //返回true，逻辑或是指当其中两个有一个为true，则返回true;
+        console.log(bool1 || bool2);
+        //返回false，逻辑与是指其中两个一定都为true，才返回true，否则返回false;
+        console.log(bool1 && bool2);
+        //返回false，逻辑非是指若指定的值为true，则变成false;返回值是其相反值
+        console.log(!bool1);
+    ```
+    5. 三元运算符：写法（条件?结果1:结果2;
+    ```javascript
+        var a=3;
+        var b=2;
+        //若a大于b成立（返回true），则返回a;若不成立，这返回b;
+        console.log(a > b?a:b);
+    ```

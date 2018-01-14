@@ -1,106 +1,81 @@
-# Javascript基础教程—变量和数据类型
->Javascript的开端从变量和数据类型开始，变量和数据类型看起来很简单；其实没那么简单！
+# Javascript初学者需要了解的知识
+>简介：Javascript是一门轻量级的编程语言，相对于Java和C语言，它不需要额外配置编译环境。它在浏览器中就可以运行；Javascript可编写到HTML页面的script标签中，也可以独立编写到JS文件中，然后通过script标签的src属性进行引入即可；
 
-### 变量
-1. 通过关键字var来声明变量；例如：var name，这就是个声明变量的过程！
+特点：轻量级，弱类型，跨平台；说白了就是代码“简单”，“自由”，“兼容性好”；所以入门Javascript并不是很难，但是Javascript是个值得深入研究的语言，目前整个前端体系知识点中都有它的存在；
 
->备注：声明变量其实就是在内存中开辟了一个位置空间，打算用来放数据进去，注意声明变量的过程还没有数据的；
-
-2. 声明变量后再来初始化变量；例如：name="test"！
->当变量声明好了就要初始化变量了，也就是给开辟的空间放点东西进去了
-代码1：
+#### 基本概念
+1. 语句：以分号(;)结束的一段代码成为语句，每条语句告诉浏览器该干些啥；例如:console.log("Hello");这条语句告诉浏览器打印出Hello字符串；
+2. 注释：用来将能够执行的代码变成不需要执行的代码，注释又分单行注释和多行注释；
+    1. 符号//为单行注释；
+    2. 符号/*注释内容*/为多行注释；
+例如：
 ```javascript
-var name;
-name="test";
-//等同于
-var name="test";
+    //console.log("我被单行注释了，所以不能显示了");
+    /*
+    console.log("我被多行注释了，不能显示了");
+    console.log("我被多行注释了，不能显示了");
+    console.log("我被多行注释了，不能显示了");
+    */
+    console.log("我没有被注释");
 ```
-可能会有人这么写;如下:
-代码2：
-```javascript
-name="test";
-var name;
-````
-会发生啥事情呢？其实代码2的效果代码1的是一样的；这是为什么呢？发生了【变量提升】
-先分析代码2步骤：看起来是先初始化—声明变量，其实执行机制的步骤是：声明变量—初始化变量；变量提升机制让var name置顶到name="test"上面执行了；
-
-### 变量分为局部变量和全局变量
-这个知识点涉及到作用域的问题，这里就大概阐述了区别：
-全局变量再任何地方都可以访问，局部变量只能在特定的环境中访问，代码如下：
-代码3
-```javascript
-    var name="test";//name全局变量：在任何地方都可以访问到name变量
-    function show(){//声明函数show
-        var sex="男";//在show函数里声明的变量属于局部变量:只能在show函数内访问的变量
-        console.log(sex); //男;sex变量只能在show函数中访问
-        console.log(name);    //test;在show函数内可以访问全局变量
-    }
-    function set(){//声明set
-        console.log(sex); //报错，因为在set函数中不能访问show函数中声明的变量
-        console.log(name); //test;正常访问name属性，符合任何地方都可以访问到name变量
-    }
-    console.log(name); //test;
-    show();//执行函数show
-    set();//执行set
-```
-
-# 数据类型
->Javascript属于弱类型语言，动态类型语言；在JS中总共有7种类型(函数不属于其中)：
-1. 基本类型:String,Number,Boolean
-2. 引用类型:Array,Object
-3. 特殊类型:undefined,null
-4. 纠结类型:Function
-备注:纠结类型属于自己理解的类型，Function是否是JS数据类型我也不确定，但是函数可以通过instanceOf来判断出Function；对于类型的判断稍后解释；
-
-判断数据类型的方法，这里先讲基本类型，引用类型和纠结类型
-1. 基本类型通过typeof来判断,代码如下：
-代码4
-```javascript
-var name="test";
-var age=26;
-var isBool=true;
-console.log(typeof name); //string字符串类型
-console.log(typeof age);    //number数字类型
-console.log(typeof isBool); //boolean布尔值类型
-```
-2. 引用类型通过instanceOf来判断,写法name instanceOf Object/Array,返回值boolean值，代码如下:
-代码5
-```javascript
-    var obj={
-        name:"test"
-    };
-    var arr=[1,2,3,4];
-    console.log(obj instanceOf Object); //true表示对象obj属于Object引用类型
-    console.log(arr instanceOf Array);  //true表示数组arr属于Array引用类型
-    console.log(arr instanceOf Object); //true表示数组arr属于Object引用类型
-```
-对于数组arr通过instanceOf判断既可以是Object类型也可以说Array类型；因为在Javascript语言中“一切皆对象”；
-3. 特殊类型和纠结类型；
-#### 首先解释undefined和null在什么情况下会发生：
-undefined:1.声明变量而没有初始化变量；2.函数没有返回值；代码如下：
-代码6
-```javascript
-    var name;   //undefined;声明了变量而没有初始化变量
-    console.log(name);
-    function show(){//声明了函数并执行，但是函数内部没有return关键字来返回数据
-        console.log("测试");
-    }
-    console.log(show());//undefined
-```
-null:没有找到相应的对象，这个在DOM对象中最能体现，例如：document.getElementById("test");如果没有Id为test的DOM，那么就会返回null
-#### 判断undefined和null
-undefined和null的判断可以通过关键字typeof来进行判断，代码如下:
-代码7
-```javascript
-    var name;
-    console.log(typeof name);//undefined
-    var dom=document.getElementById("test");
-    console.log(typeof null); //object
-```
-其实对null判断最好不要通过object，它无法精确判断，建议通过判断运算符“===”来判断；不要用“==”判断，因为undefined == null返回true的，也不能精确判断；
-代码8
-```javascript
-    var name;
-    console.log(name == null);//true
-    console.log(name === null);//false
-```
+3. 运算符：在Javascript有很多不同类型的运算符，我们目前只需要了解以下几类即可，以下几类也是用的比较多的运算符；
+    1. 算术运算符：算术运算符主要针对于Number类型的数据，分别是(+)减(-)乘(*)除(/)，累加(++)，累减(--)，求余(%);代码如下:
+    ```javascript
+        console.log(1+2);   //3 加发运算符
+        console.log(2-1);   //1 减法运算符
+        console.log(1*2);   //2 乘法运算符
+        console.log(10/2);  //5 除法运算符
+        console.log(10%3);  //1 求余运算符
+        //累加累减运算符其实分两步完成的。运算，赋值这两步；
+        //该运算符分“先运算后赋值(n++)”和“先赋值后运算(++n)”这两种情况;
+        var n=1;
+        var a=n++;  //先赋值后运算
+        console.log(a); //1;先将n=1复制给变量a
+        console.log(n); //2;赋值完成后n就自我递增+1
+        var m=1;
+        var b=++m;  //先运算再复制
+        cosole.log(b);  //2;这步等变量m运算完成再赋值给变量b
+        console.log(n); //2;
+    ```
+    2. 赋值运算符：该运算符也主要针对Number类型的数据，分别是=,+=,-=,%=,/=,*=;
+    ```javascript
+        var a=1;
+        var a=a+4;
+        console.log(a); //5
+        //等同于以上
+        var a=1;
+        var a+=4;
+        console.log(a); //5  
+    ```
+    从以上代码可知，赋值运算符其实是a=a+4的简写，其他运算符也是如此
+    3. 比较运算符：比较运算符当然比较条件是否符合，符合返回true，不符合返回false
+    ```javascript
+        var a=8;
+        console.log(a == 8);    //等于比较;返回false
+        //全等于比较;返回false,全等于包括值和类型;
+        //a=="8"返回true;“==”运算符只是比较值是否等于;
+        console.log(a === "8");
+        console.log(a != 4);    //不等于比较;返回true
+        console.log(a>6);   //大于比较;返回true
+        console.log(a<6);   //小于比较;返回false
+        console.log(a<=8);  //小于等于比较;返回true
+        console.log(a>=8);  //大于等于比较;返回false        
+    ```
+    4. 逻辑运算符：逻辑判断主要有逻辑或(||)，逻辑与(&&)，逻辑非(!);
+    ```javascript
+        var bool1=true;
+        var bool2=false;
+        //返回true，逻辑或是指当其中两个有一个为true，则返回true;
+        console.log(bool1 || bool2);
+        //返回false，逻辑与是指其中两个一定都为true，才返回true，否则返回false;
+        console.log(bool1 && bool2);
+        //返回false，逻辑非是指若指定的值为true，则变成false;返回值是其相反值
+        console.log(!bool1);
+    ```
+    5. 三元运算符：写法（条件?结果1:结果2;
+    ```javascript
+        var a=3;
+        var b=2;
+        //若a大于b成立（返回true），则返回a;若不成立，这返回b;
+        console.log(a > b?a:b);
+    ```

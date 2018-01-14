@@ -2,11 +2,11 @@
 >Javascript的开端从变量和数据类型开始，变量和数据类型看起来很简单；其实没那么简单！
 
 ### 变量
-1.通过关键字var来声明变量；例如：var name，这就是个声明变量的过程！
+1. 通过关键字var来声明变量；例如：var name，这就是个声明变量的过程！
 
 >备注：声明变量其实就是在内存中开辟了一个位置空间，打算用来放数据进去，注意声明变量的过程还没有数据的；
 
-2.声明变量后再来初始化变量；例如：name="test"！
+2. 声明变量后再来初始化变量；例如：name="test"！
 >当变量声明好了就要初始化变量了，也就是给开辟的空间放点东西进去了
 代码1：
 ```javascript
@@ -46,14 +46,14 @@ var name;
 
 # 数据类型
 >Javascript属于弱类型语言，动态类型语言；在JS中总共有7种类型(函数不属于其中)：
-1.基本类型:String,Number,Boolean
-2.引用类型:Array,Object
-3.特殊类型:undefined,null
-4.纠结类型:Function
+1. 基本类型:String,Number,Boolean
+2. 引用类型:Array,Object
+3. 特殊类型:undefined,null
+4. 纠结类型:Function
 备注:纠结类型属于自己理解的类型，Function是否是JS数据类型我也不确定，但是函数可以通过instanceOf来判断出Function；对于类型的判断稍后解释；
 
 判断数据类型的方法，这里先讲基本类型，引用类型和纠结类型
-1.基本类型通过typeof来判断,代码如下：
+1. 基本类型通过typeof来判断,代码如下：
 代码4
 ```javascript
 var name="test";
@@ -63,7 +63,7 @@ console.log(typeof name); //string字符串类型
 console.log(typeof age);    //number数字类型
 console.log(typeof isBool); //boolean布尔值类型
 ```
-2.引用类型通过instanceOf来判断,写法name instanceOf Object/Array,返回值boolean值，代码如下:
+2. 引用类型通过instanceOf来判断,写法name instanceOf Object/Array,返回值boolean值，代码如下:
 代码5
 ```javascript
     var obj={
@@ -75,7 +75,7 @@ console.log(typeof isBool); //boolean布尔值类型
     console.log(arr instanceOf Object); //true表示数组arr属于Object引用类型
 ```
 对于数组arr通过instanceOf判断既可以是Object类型也可以说Array类型；因为在Javascript语言中“一切皆对象”；
-3.特殊类型和纠结类型；
+3. 特殊类型和纠结类型；
 #### 首先解释undefined和null在什么情况下会发生：
 undefined:1.声明变量而没有初始化变量；2.函数没有返回值；代码如下：
 代码6
